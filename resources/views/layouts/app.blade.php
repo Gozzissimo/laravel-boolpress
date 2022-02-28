@@ -49,7 +49,7 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item">
                                 <a id="navbarDropdown" class="nav-link ">
                                     {{ Auth::user()->name }}
                                 </a>
@@ -57,7 +57,7 @@
                             <li class="nav-item">
                                 <a class="dropdown-item" href="{{ route('admin.posts.create') }}">Crea un post</a>
                             </li>
-                            <li>
+                            <li class= "nav-item">
                                 <div aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
