@@ -13,8 +13,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    {{ __('You are logged in!') }}
+                    <h2>
+                        Welcome {{ Auth::user()->name }} - {{ Auth::user()->userInfo()->first()->phone }}
+                    </h2>
                 </div>
             </div>
         </div>
