@@ -20,9 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware('auth') //controllo se sono loggato
-->namespace('Admin')
+->namespace('Admin') //cartella controller
 ->name('admin.') //name
-->prefix('admin') //uri
+->prefix('admin') //prefisso uri
 ->group(function () {
     Route::get('/', 'HomeController@index')
     ->name('home');

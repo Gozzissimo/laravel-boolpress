@@ -1,9 +1,10 @@
 <?php
 
-use Faker\Generator as Faker;
-use App\User;
-use App\Model\Post;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
+use Faker\Generator as Faker;
+use App\Model\Post;
+use App\User; 
 
 class PostSeeder extends Seeder
 {
