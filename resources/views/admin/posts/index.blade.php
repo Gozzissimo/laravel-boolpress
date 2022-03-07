@@ -4,6 +4,13 @@
 
 <div class="container">
     <div class="row">
+        @if (session('status'))
+            <div class="alert alert-danger">
+                {{ session('status') }}
+            </div>
+        @endif
+    </div>
+    <div class="row">
         <div class="col">
             <h1>
                 Posts
@@ -13,7 +20,7 @@
     <div class="row">
         <table class="table table-striped">
             <thead>
-                <tr>
+                <tr class="text-center">
                     <th scope="col">Id</th>
                     <th scope="col">Title</th>
                     <th scope="col">Created at</th>
@@ -29,13 +36,18 @@
                         <td>{{ $post->created_at }}</td>
                         <td>{{ $post->updated_at }}</td>
                         <td>
-                            <a class="btn btn-primary" href="{{ route('admin.posts.show', $post->slug) }}">View</a>
+                            <a class="btn btn-primary text-white" href="{{ route('admin.posts.show', $post->slug) }}">View</a>
                         </td>
                         <td>
                             <a class="btn btn-secondary" href="{{ route('admin.posts.edit', $post->slug) }}">Edit</a>
                         </td>
                         <td>
-                            Delete
+                            <form action="{{ route('admin.posts.destroy', $post) }}" 
+                            method="post">
+                                @csrf
+                                @method('DELETE')
+                                <input class="btn btn-danger" type="submit" value="Delete">
+                            </form>
                         </td>
                     </tr>
                 @endforeach
