@@ -121,7 +121,13 @@ class PostController extends Controller
             $post->slug = $post->createSlug($data['title']);
         }
 
-        $post->update($data);
+        if ($data['content'] != $post->content) {
+            $post->content = $data['content'];
+        }
+
+        $post->update();
+
+        return redirect()->route('admin.posts.show', $post);
     }
 
     /**
