@@ -7,6 +7,9 @@ use Illuminate\Support\Str;
 use App\Model\Post;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use function GuzzleHttp\Promise\all;
 
 class PostController extends Controller
 {
@@ -41,7 +44,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'title' => 'required|max:255',
+            'title' => 'required|max:240',
             'content' => 'required',
         ]);
 
@@ -86,7 +89,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        dd($post);
+        if (Auth::user()->id != $post->id) {
+            abort(403);
+        }
+
+        return view('admin.posts.edit', ['post' => $post]);
     }
 
     /**
@@ -96,9 +103,25 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $data = $request->all();
+
+        if (Auth::user()->id != $post->id) {
+            abort(403);
+        }
+
+        $validateData = $request->validate([
+            'title' => 'required|max:240',
+            'content' => 'required',
+        ]);
+
+        if ($data['title'] != $post->title) {
+            $post->title = $data['title'];
+            $post->slug = $post->createSlug($data['title']);
+        }
+
+        $post->update($data);
     }
 
     /**
