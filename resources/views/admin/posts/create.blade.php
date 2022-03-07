@@ -29,7 +29,7 @@
                         @enderror
                     </div>
 
-                    <input class="btn btn-primary" type="submit" value="Salva">
+                    <input class="btn btn-primary text-white" type="submit" value="Salva">
                 </form>
             </div>
         </div>
