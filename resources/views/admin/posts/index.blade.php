@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row">
         <div class="col">
@@ -28,10 +29,10 @@
                         <td>{{ $post->created_at }}</td>
                         <td>{{ $post->updated_at }}</td>
                         <td>
-                            <a class="btn btn-primary" href="{{ route('admin.posts.show'), $post->slug }}">View</a>
+                            <a class="btn btn-primary" href="{{ route('admin.posts.show', $post->slug) }}">View</a>
                         </td>
                         <td>
-                            <a class="btn btn-secondary" href="{{ route('admin.posts.edit'), $post->slug }}">Edit</a>
+                            <a class="btn btn-secondary" href="{{ route('admin.posts.edit', $post->slug) }}">Edit</a>
                         </td>
                         <td>
                             Delete
