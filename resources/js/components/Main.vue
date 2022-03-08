@@ -14,13 +14,15 @@
 </template>
 
 <script>
+import Axios from 'axios'
+
 export default {
     name: 'Main',
 
     created() {
-        axios.get('http://127.0.0.1:8000/api/posts').then(
+        Axios.get('http://127.0.0.1:8000/api/posts').then(
             (result) => {
-                console.log(result);
+                console.log(result.data.results.posts[0]);
             }
         );
     }
