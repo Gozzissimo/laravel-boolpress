@@ -28,3 +28,7 @@ Route::middleware('auth') //controllo se sono loggato
     ->name('home');
     Route::resource('posts', 'PostController');
 });
+
+Route::get('{any?}', function ($name = null) {
+    return view('guest.welcome');
+})->where('any', '.*');
