@@ -89,7 +89,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        if (Auth::user()->id != $post->id) {
+        if (Auth::user()->id != $post->user_id) {
             abort(403);
         }
 
