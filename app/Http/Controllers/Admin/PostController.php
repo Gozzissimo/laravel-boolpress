@@ -107,7 +107,7 @@ class PostController extends Controller
     {
         $data = $request->all();
 
-        if (Auth::user()->id != $post->id) {
+        if (Auth::user()->id != $post->user_id) {
             abort(403);
         }
 
